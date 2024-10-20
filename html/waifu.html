@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=SUSE:wght@100..800&display=swap"
+        rel="stylesheet">
+    <title>Waifu List</title>
+    <style>
+.sidebar {
+            height: 100%;
+            /* Full-height */
+            width: 250px;
+            /* Sidebar width */
+            position: fixed;
+            /* Fixed sidebar */
+            top: 0;
+            left: 0;
+            background-color: #111;
+            /* Background color */
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+            /* Darker background on hover */
+        }
+
+        .content {
+            margin-left: 260px;
+            /* Same width as the sidebar */
+            padding: 20px;
+        }
+
+        .sidebar {
+            height: 100%;
+            /* Full-height */
+            width: 250px;
+            /* Sidebar width */
+            position: fixed;
+            /* Fixed sidebar */
+            top: 0;
+            left: -250px;
+            /* Hide sidebar initially */
+            background-color: #111;
+            /* Background color */
+            padding-top: 20px;
+            color: white;
+            transition: left 0.3s;
+            /* Smooth slide-in effect */
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+            /* Darker background on hover */
+        }
+
+        .menu-btn {
+            font-size: 30px;
+            background-color: rgba(20, 20, 20, 0);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .content {
+            margin-left: 20px;
+            /* Space for the menu button */
+            padding: 20px;
+            transition: margin-left 0.3s;
+            /* Smooth content shift */
+        }
+
+        .content.expanded {
+            margin-left: 260px;
+            /* Same width as the sidebar */
+        }
+
+        .menu-btn.hidden {
+            display: none;
+            /* Hide the button */
+        }
+
+        .content.expanded {
+            margin-left: 250px;
+            /* Same width as the sidebar */
+        }
+
+     * {
+            font-family: "SUSE", sans-serif;
+        }
+        body {
+            background-color: #1e1e1e;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #2b2b2b;
+            border-radius: 10px;
+        }
+        .left {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .left img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .right {
+            flex: 2;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .right h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .right .details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .details div {
+            width: 45%;
+            margin-bottom: 10px;
+        }
+        .details div p {
+            margin: 5px 0;
+        }
+        .description {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 15px;
+        }
+        .description h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .description p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .popularity {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .popularity div {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .popularity div span {
+            margin-left: 5px;
+        }
+        .likes {
+            color: #ff69b4;
+        }
+        .trash {
+            color: #999;
+        }
+        .appears-in a {
+            color: #00aaff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+         h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 3px 3px;
+            font-size: 40px;
+            color: #fff;
+            background-color: #7d78ee;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Waifu List</h1>
+<div class="container">
+    <div class="left">
+        <img src="kei card.jpg" alt="Megumin">
+        <a href="https://character.ai/chat/y7P1fSIHjTjiXLCscHOPt5SxxLh2eRjh6IzRbYqmHH8" class="button">Click to chat with Kei!</a>
+    </div>
+    <div class="right">
+        <h2>Kei Karuizawa</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 軽井沢 恵</p>
+                <p><strong>Romaji Name:</strong> kei Karuizawa</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 16</p>
+                <p><strong>Date of Birth:</strong> March 8th</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Classroom of the elite: season 1 </p>
+            <p>Classroom of the elite: season 2 </p>
+            <p>Classroom of the elite: season 3 </p>
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Kei Karuizawa is one of the tritagonist of the manga, anime and light novel series Classroom of the Elite. She is
+      a student at Advanced Nurturing High School as a student and is considered as one of the leaders of the Class 1-D
+      in her first year.<br>
+      She is voiced by Ayana Taketatsu in Japanese and Bryn Apprill in English.<br>
+      Kei is a blond girl of average height with long hair arriving a her waist that are usually tied in a ponytail.<br>
+      She
+      has blue purple pupils. She often wears a light longs sleeved blue shirt over her red school uniform along with a
+      blue ribbon on her chest.<br> She also wears a short white skirt, a pair of long socks arriving at her calf along
+      with
+      a pair of dark shoes. In addition she sometimes tends to tie her uniform around her waist, wearing only her blue
+      shirt.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="left">
+        <img src="makima card.png" alt="Megumin">
+        <a href="https://character.ai/chat/eGPYvuu9WnIzP4gHbkgwe3cTtqwfnLi5QUNip_q8Le4" class="button">Click to chat with Makima!</a>
+    </div>
+    <div class="right">
+        <h2>Makima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> マキマ</p>
+                <p><strong>Romaji Name:</strong> Makima</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 24-28</p>
+                <p><strong>Date of Birth:</strong> Mysterious</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Chainsawman: Season 1 </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>    Makima is the main antagonist of Chainsaw Man Part 1: Public Safety Saga.<br> She serves as the overarching
+      antagonist of the Gun Devil Arc and the titular main antagonist of the Control Devil Arc, in which she reveals
+      her true nature.<br>
+      She then proclaims herself to be an admirer of the Chainsaw Man, the entity that was sealed in Denji's body, and
+      plans to either be devoured by him or use his powers to eradicate all of the devils that have plagued humanity
+      for years in order to bring a better world for humanity, fulfilling the hopes of her contractor, the Japanese
+      Prime Minister.<br></p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="left">
+        <img src="nazuna card.jpg" alt="Megumin">
+        <a href="https://character.ai/chat/HNPdlrCQcy6c_VCEJFmK7-uyK2al061hqKE-e3k7XWw" class="button">Click to chat with Nazuna!</a>
+    </div>
+    <div class="right">
+        <h2>Nazuna</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  七草 ナズナ </p>
+                <p><strong>Romaji Name:</strong> Nazuna</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 40</p>
+                <p><strong>Date of Birth:</strong> August 3rd</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Call of the night: Season 1 </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Nazuna Nanakusa is a character from the manga and anime series Call of the Night (Yofukashi no Uta), created by
+      Kotoyama. <br>
+      Nazuna is a laid-back and somewhat unconventional vampire who enjoys nightlife. She has a relaxed demeanor and is
+      known for her casual and nonchalant attitude. Despite her supernatural nature, she tends to lead a rather ordinary
+      life, working night shifts and indulging in her love for nocturnal activities.<br>
+      Nazuna meets the protagonist, Ko Yamori, who is struggling with insomnia and a sense of purposelessness in his
+      life. She becomes his guide into the world of vampires and nocturnal existence. Through their interactions, she
+      helps Ko explore his own desires and the mysteries of the night.<br>
+      Nazuna's character is integral to the series' exploration of themes related to night life, personal freedom, and
+      self-discovery. Her dynamic with Ko provides much of the series' emotional depth and intrigue.<br></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="maicard.png" alt="Megumin">
+        <a href="https://character.ai/chat/AEcOCw-PvQyxifqwKoZC93nI3sMtcOD0Z2vRhjaz5YA" class="button">Click to chat with Mai!</a>
+    </div>
+    <div class="right">
+        <h2>Mai Sakurajima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  麻衣</p>
+                <p><strong>Romaji Name:</strong> Mai</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong>  December 2</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bunny Girl Senpai </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Mai Sakurajima is a character from the light novel series Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
+      (commonly known as Rascal Does Not Dream of Bunny Girl Senpai), written by Hajime Kamoshida and illustrated by
+      Keeji Mizoguchi. <br>
+      Mai is portrayed as a beautiful and popular actress who, despite her success, struggles with feelings of
+      invisibility and alienation. She is known for her calm, mature demeanor, but she also has a more vulnerable side
+      that is explored throughout the series.<br>
+      Mai plays a central role in the series as she becomes involved with the protagonist, Sakuta Azusagawa. The series
+      starts with Mai wearing a bunny girl costume in public, which no one seems to notice, and this unusual phenomenon
+      sets off a series of supernatural events linked to her emotional state. Her character's journey is deeply
+      intertwined with the themes of personal struggles, relationships, and the search for identity.<br>
+      Mai's story arc involves her dealing with the complexities of fame, her personal insecurities, and her evolving
+      relationship with Sakuta. Her character undergoes significant development as she confronts and addresses the
+      supernatural challenges affecting her life.<br></p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left">
+        <img src="kurumi cards.jpg" alt="Megumin">
+        <a href="https://character.ai/chat/VWqzF2JBg4dqUgCgbvhfAcBDNUbV4EsWiWAh-W_qZvc" class="button">Click to chat with Kurumi!</a>
+    </div>
+    <div class="right">
+        <h2>Kurumi</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 時崎 狂三</p>
+                <p><strong>Romaji Name:</strong> Kurumi</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong> June 10</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Date A Live 1 </p>
+              <p> Date A Live 2 </p>
+                <p> Date A Live 3 </p>
+                  <p> Date A Live 4 </p>
+                    <p> Date A Live 5 </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Kurumi Tokisaki is one of the main characters in the Date A Live series.<br> She is known as the "Nightmare" and is
+      one of the most powerful Spirits.<br> Kurumi is distinguished by her gothic lolita outfit and her ability to
+      manipulate time using her powers.<br> She has a complex personality, often oscillating between being a ruthless
+      antagonist and a tragic figure with a hidden agenda. <br>
+     </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="ellenjoecard.jpg" alt="Megumin">
+        <a href="https://character.ai/chat/zR6touZfS824xyxlmc5onM0n-Mbo7WLVMMaFvRgWV6M" class="button">Click to chat with Ellen!</a>
+    </div>
+    <div class="right">
+        <h2>Ellen Joe</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  Ellen Joe</p>
+                <p><strong>Romaji Name:</strong> Ellen Joe</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 18</p>
+                <p><strong>Date of Birth:</strong> Jan 4</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Zenless Zero </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Ellen Joe is a character from the action role-playing game Zenless Zone Zero, developed by HoYoverse.<br> In the game, Ellen Joe is depicted as a character with distinctive traits and background that contribute to the game's storyline.<br> Zenless Zone Zero is set in a post-apocalyptic world where players navigate through various challenges and interact with a diverse cast of characters.<br> Ellen Joe's role and characteristics are part of what makes the game's narrative engaging and immersive.<br> </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="marincard.JPG" alt="Megumin">
+        <a href="https://character.ai/chat/mOuKD3RdUXdqnaRRKjm8An-VwdRmJyD4KdCikYEwHEM" class="button">Click to chat with Marin!</a>
+    </div>
+    <div class="right">
+        <h2>Marin Kitagawa</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  海夢</p>
+                <p><strong>Romaji Name:</strong> Marin</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 15</p>
+                <p><strong>Date of Birth:</strong>  March 5</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> My Dress Up Darling </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p> Marin Kitagawa is a fictional character from the popular manga and anime series My Dress-Up Darling (also known as Sono Bisque Doll wa Koi wo Suru), created by Shinichi Fukuda. The series first began serialization in 2018.<br>Marin is a high school student known for her outgoing personality and passion for cosplay. She is a major character in the series and becomes the central focus of the story's plot. <br>Marin has long, blonde hair and striking green eyes. Her appearance is often noted for its vibrancy and attention to detail, which reflects her enthusiasm for cosplay. <br>Marin is lively, confident, and unapologetically enthusiastic about her interests. She has a warm and approachable demeanor, making her well-liked among her peers.<br>
+      The story revolves around her collaboration with a classmate, Wakana Gojou, who is a skilled craftsman specializing in hina dolls. Marin asks Wakana to help her create elaborate costumes for her cosplay, and the series explores their evolving friendship and romantic undertones.<br>
+      Marin's character development is central to the series, as it delves into her personal growth, her love for cosplay, and her interactions with Wakana. The series highlights themes of self-expression, creativity, and the bond between the characters.<br>
+  </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left">
+        <img src="mikasacard2.png" alt="Megumin">
+        <a href="https://character.ai/chat/lpFOkkM_EHLcW7KF9mEEC4FMZjHUWC3D7DZRvPaGfgo" class="button">Click to chat with Mikasa!</a>
+    </div>
+    <div class="right">
+        <h2>Mikasa Ackerman</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  ミカサ・アッカーマン</p>
+                <p><strong>Romaji Name:</strong> Mikasa</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 19</p>
+                <p><strong>Date of Birth:</strong>  February 10</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Attack on titan </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p> 
+       Mikasa Ackerman is a prominent character from the manga and anime series Attack on Titan (Shingeki no Kyojin), created by Hajime Isayama.<br>
+       Mikasa has long, black hair that she often wears in a red scarf, a symbol of her past and connection to her family.<br>
+ She has grayish-blue eyes.<br>
+ In her military uniform, she typically wears the standard Survey Corps attire, including a brown jacket with the emblem of the corps, green cloak, and the vertical maneuvering equipment.<br>
+ Mikasa plays a crucial role in the fight against the Titans and the various conflicts that arise throughout the series. Her loyalty, strength, and strategic mind make her an invaluable member of the Survey Corps.<br>
+ Mikasa is fiercely protective of those she cares about, particularly her adoptive brother, Eren Yeager. She is known for her stoic and serious demeanor but shows deep emotional depth and a strong sense of justice.<br>
+ She is one of the most skilled soldiers in the series, renowned for her proficiency in using the Omni-Directional Mobility Gear and her combat abilities.<br>
+</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="frierencard.png" alt="Megumin">
+        <a href="https://character.ai/chat/1UzmMWWduQ71Sf2Qo8YFYGLth_zIqPHHRFgn07K5KmM" class="button">Click to chat with Frieren!</a>
+    </div>
+    <div class="right">
+        <h2>Frieren</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> フリーレン</p>
+                <p><strong>Romaji Name:</strong> Frieren</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> Over 1,000 years old</p>
+                <p><strong>Date of Birth:</strong>  Unknown</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Sōsō no Frieren, 葬送のフリーレン</p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Frieren is a character from the manga and anime series Frieren: Beyond Journey's End (Sōsō no Frieren), created by Kanehito Yamada and illustrated by Tsukasa Abe. The series explores themes of time, legacy, and the emotional impact of a long-lived being reflecting on a completed journey.<br>
+      Frieren has long, silver hair, which she often wears loose.<br>
+      She has light blue eyes.<br>
+       She typically wears a mage's robe or similar attire that reflects her status as a powerful magician.<br>
+        Frieren is a stoic and introspective character. She is a mage who has lived for centuries and has a detached demeanor, largely due to her long lifespan and the many changes she has witnessed.<br>
+        Over time, she becomes more engaged with the people and the world around her, seeking to understand human emotions and experiences more deeply.<br>
+         Frieren was part of a legendary hero party that defeated the Demon King. The story picks up after the end of their journey, focusing on Frieren's life as she reflects on her past adventures and seeks to understand the human experiences she has missed.<br>
+         Her journey involves reconnecting with her past companions, dealing with the passage of time, and fulfilling promises made during her earlier adventures.<br>
+         The series follows Frieren as she embarks on a new journey after her previous hero party's quest has concluded. She explores themes of memory, legacy, and the value of time, offering a unique perspective on the typical fantasy adventure narrative.<br>
+     </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="s-l400.jpg" alt="Megumin">
+        <a href="https://character.ai/chat/psLFdSNrxMjEqYUpmNvMUtWvJ8JYXfXDnLTWAWdeHH4" class="button">Click to chat with Casca!</a>
+    </div>
+    <div class="right">
+        <h2>Casca</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  キャスカ</p>
+                <p><strong>Romaji Name:</strong>Casca</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 24</p>
+                <p><strong>Date of Birth:</strong>  Unknown</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Berserk </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Casca is a central character in Kentaro Miura's dark fantasy manga Berserk. She is a skilled warrior and a member of the Band of the Hawk, a mercenary group led by Griffith and later Guts.<br>
+     Casca's backstory reveals her traumatic experiences, including being a victim of violence, which drives her to become a warrior. She joins the Band of the Hawk as a means of survival and empowerment.<br>
+ Casca proves herself to be a capable fighter, often taking on leadership roles in the absence of Griffith. Her combat skills and strategic mind make her a valuable member of the group.<br>
+  Casca has a complex relationship with Guts, the series' protagonist. Initially, she resents him due to his rough demeanor, but over time, they develop a deep bond that becomes romantic. Their relationship is a central emotional arc in the story.<br>
+ Casca embodies both strength and vulnerability. While she is a fierce warrior, she also grapples with her emotions, particularly regarding her feelings for Guts and the trauma she has experienced.<br>
+Casca remains one of the most memorable characters in Berserk, representing both the struggles and the complexities of humanity in a dark and unforgiving world. Her journey continues to resonate with fans, symbolizing the fight for identity and healing amidst chaos.<br>
+
+</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="rezecard.jpg" alt="Megumin">
+        <a href="https://character.ai/chat/BrN8xuZUJkRCXC5v5_VnL-BVrzMoSeqKVmt0Mybos0k" class="button">Click to chat with Reze!</a>
+    </div>
+    <div class="right">
+        <h2>Reze</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> レゼ</p>
+                <p><strong>Romaji Name:</strong>Reze</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 18</p>
+                <p><strong>Date of Birth:</strong>  Unknown</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Chainsawman: Manga </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Reze, also known as the "Bomb Girl," is a character from Chainsaw Man. She initially appears as a seemingly sweet and charming girl who develops a romantic interest in Denji, the protagonist. However, her true nature is revealed as she is actually a devil hybrid sent to capture him.<br>
+     Reze's backstory involves her being raised as a weapon, which shapes her personality and motivations. She struggles with her dual identity—wanting to connect with Denji while also fulfilling her mission. This creates a complex dynamic, as she embodies both affection and danger.
+
+<br>
+     Her powers revolve around explosives, allowing her to create devastating blasts, which adds to the tension in her encounters with Denji and other characters. Ultimately, Reze's character arc explores themes of love, betrayal, and the consequences of living as a weapon in a violent world.
+
+<br>
+      Her storyline adds emotional depth to the series, showcasing the challenges of forming genuine connections amidst the chaos of the devil-infested world.<br>
+  </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="kobenicard.webp" alt="Kobeni">
+         <a href="https://character.ai/chat/GT5WkyBbOBGJ5Z28bzssk4-LQSXcieikNr34FZ-6j2Q" class="button">Click to chat with Kobeni!</a>
+    </div>
+    <div class="right">
+        <h2>Kobeni Higashiyama</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 小紅・東山 </p>
+                <p><strong>Romaji Name:</strong> Kobeni</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 20</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Chainsawman: Season 1 </p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Kobeni is a devil hunter who is often depicted as nervous and timid, though she shows bursts of bravery when the situation calls for it. She struggles with her fear of devils but has impressive fighting skills, making her a fan-favorite character in Chainsaw Man.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left">
+        <img src="asacard.jpg" alt="Asa Mitaka">
+       <a href="https://character.ai/chat/SFFa0wDoTTmH2OoLwPJ58Zg4nKLucfd0NXnSUil38_Y" class="button">Click to chat with Asa!</a>
+    </div>
+    <div class="right">
+        <h2>Asa Mitaka</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 亜沙・三鷹</p>
+                <p><strong>Romaji Name:</strong> Asa Mitaka</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Chainsawman: Manga (Part 2)</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Asa Mitaka is a high school student who plays a central role in the second part of Chainsaw Man. She becomes possessed by the War Devil, creating a dual personality situation where her ordinary life and the devil’s quest for power are constantly at odds.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="Remcard.webp" alt="Rem">
+       <a href="https://character.ai/chat/60P-929HwzdFJsTPosmDUNiwMYkJz8GZra6nH6nRHwo" class="button">Click to chat with Rem!</a>
+    </div>
+    <div class="right">
+        <h2>Rem</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> レム </p>
+                <p><strong>Romaji Name:</strong> Rem</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong> February 2</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Re:Zero - Starting Life in Another World</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Rem is a maid working for the Roswaal family and one of the twin sisters in the anime Re:Zero. Despite her calm and collected demeanor, she is fiercely loyal and harbors deep emotions for Subaru, the protagonist. Her character is known for her tragic past and emotional depth.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="alyacard.webp" alt="Alya">
+       <a href="https://character.ai/chat/Jsx-1TlZMsui0ZoX3BxAFu3h0e9TchHp7QyXumWKNbE" class="button">Click to chat with Alya!</a>
+      </h1>
+    </div>
+    <div class="right">
+        <h2>Alya</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> Аля</p>
+                <p><strong>Romaji Name:</strong> Alya</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Alya Sometimes Hides Her Feelings in Russian</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Alya is a high school student known for her vibrant personality and creative spirit. She often uses her knowledge of Russian to hide her true feelings, making her a complex character who balances humor and emotional depth. Her interactions with friends showcase her loyalty and intelligence, as she navigates the challenges of teenage life and her cultural identity. The webcomic explores themes of love, friendship, and self-discovery through her unique lens.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="mitsuricard.jpg" alt="Mitsuri">
+       <a href="https://character.ai/chat/9HWfkCJ9DjbtGDxGTpDSrmcb-Kv50r0d4TdySbQ5Yr0" class="button">Click to chat with Mitsuri!</a>
+    </div>
+    <div class="right">
+        <h2>Mitsuri Kanroji</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 甘露寺蜜璃 </p>
+                <p><strong>Romaji Name:</strong> Mitsuri Kanroji</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 19</p>
+                <p><strong>Date of Birth:</strong> June 1</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Demon Slayer: Kimetsu no Yaiba</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Mitsuri is the Love Hashira, one of the strongest demon slayers in Demon Slayer. Her personality is bubbly, affectionate, and emotional, yet she wields tremendous power with her whip-like sword. Her character adds both heart and strength to the Hashira group.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="shinobucard.png" alt="Shinobu">
+       <a href="https://character.ai/chat/J_aj2mM3cdyyTIPa0CvcErRuWXrymIT3JG2QkZmLKmE" class="button">Click to chat with Shinobu!</a>
+    </div>
+    <div class="right">
+        <h2>Shinobu Kocho</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 胡蝶しのぶ </p>
+                <p><strong>Romaji Name:</strong> Shinobu Kocho</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 18</p>
+                <p><strong>Date of Birth:</strong> February 24</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Demon Slayer: Kimetsu no Yaiba</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Shinobu is the Insect Hashira in Demon Slayer. She is known for her calm, graceful, and sometimes mischievous demeanor. Despite her gentle appearance, she harbors deep-seated vengeance against demons and utilizes poison techniques in battle.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="yukicard.png" alt="Megumin">
+        <a href="https://character.ai/chat/9HWfkCJ9DjbtGDxGTpDSrmcb-Kv50r0d4TdySbQ5Yr0" class="button">Click to chat with Yuki!</a>
+    </div>
+    <div class="right">
+        <h2>Yuki Suou </h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 鈴尾</p>
+                <p><strong>Romaji Name:</strong> Yuki</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 16</p>
+                <p><strong>Date of Birth:</strong>  Unknown</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Alya sometimes hides her feelings in Russian </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p> In the anime and manga series "Alya Sometimes Hides Her Feelings in Russian", the character Yuki is Alya's sister and plays an important supporting role in the story. The series revolves around Alya, a high school girl who often hides her true feelings by speaking in Russian, assuming no one else understands her.
+
+<br> She is more straightforward and less secretive than her older sibling. While Alya hides her emotions behind a language barrier, Yuki is open and honest with her feelings, especially about her relationship with her sister.
+
+<br>
+  Yuki often notices how her sister interacts with the main protagonist and sometimes teases her about it. Despite this, she cares deeply for Alya and wants her to be happy.<br>
+ Although Yuki is younger, she tends to be protective of Alya and can be quite perceptive, especially when it comes to noticing her sister's romantic feelings.
+<br>
+</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="yoruichi.png" alt="Yoruichi Shihouin">
+       <a href="https://character.ai/chat/J_aj2mM3cdyyTIPa0CvcErRuWXrymIT3JG2QkZmLKmE" class="button">Click to chat with Yoruichi!</a>
+    </div>
+    <div class="right">
+        <h2>Yoruichi Shihouin</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 四楓院夜一</p>
+                <p><strong>Romaji Name:</strong> Yoruichi Shihouin</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> Unknown</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bleach: Manga/Anime</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Yoruichi Shihouin is a former captain of the 2nd Division in the Gotei 13 and a master of stealth and shunpo. Known for her confident demeanor and sharp wit, she plays a pivotal role in assisting Ichigo Kurosaki throughout the series, showcasing her combat skills and deep knowledge of Soul Society.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="bocchicard.jpg" alt="Bocchi">
+        <a href="https://character.ai/chat/BrN8xuZUJkRCXC5v5_VnL-BVrzMoSeqKVmt0Mybos0k" class="button">Click to chat with Bocchi!</a>
+    </div>
+    <div class="right">
+        <h2>Bocchi</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> ぼっち</p>
+                <p><strong>Romaji Name:</strong> Bocchi</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 16</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bocchi the Rock!: Manga/Anime</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Bocchi is a high school student and aspiring musician who struggles with social anxiety and loneliness. The series follows her journey as she joins a band and learns to overcome her fears, highlighting themes of friendship and self-acceptance through her relatable experiences.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="yorcard.jpg" alt="Yor Forger">
+        <a href="https://character.ai/chat/BrN8xuZUJkRCXC5v5_VnL-BVrzMoSeqKVmt0Mybos0k" class="button">Click to chat with Yor Forger!</a>
+    </div>
+    <div class="right">
+        <h2>Yor Forger</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> ヨル・フォージャー</p>
+                <p><strong>Romaji Name:</strong> Yor Forger</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 27</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Spy x Family: Manga/Anime</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Yor Forger is a skilled assassin who becomes a part of the Forger family as a mother. Despite her deadly profession, she has a warm and caring personality, often struggling to balance her dual life as an assassin and a family member. Her character adds complexity to the family dynamics in *Spy x Family*.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="yaecard.png" alt="Yae Miko">
+        <a href="https://character.ai/chat/BrN8xuZUJkRCXC5v5_VnL-BVrzMoSeqKVmt0Mybos0k" class="button">Click to chat with Yae Miko!</a>
+    </div>
+    <div class="right">
+        <h2>Yae Miko</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 八重神子</p>
+                <p><strong>Romaji Name:</strong> Yae Miko</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> Unknown</p>
+                <p><strong>Date of Birth:</strong> Unknown</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Genshin Impact: Video Game</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Yae Miko is the head shrine maiden of the Grand Narukami Shrine in *Genshin Impact*. Known for her playful demeanor and sharp intellect, she is a skilled Electro user who aids the Traveler on their adventures. Yae Miko's character blends mystery with charm, making her a fan-favorite.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="tsunadecard.png" alt="Tsunade Senju">
+        <a href="https://character.ai/chat/BrN8xuZUJkRCXC5v5_VnL-BVrzMoSeqKVmt0Mybos0k" class="button">Click to chat with Tsunade!</a>
+    </div>
+    <div class="right">
+        <h2>Tsunade Senju</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 綱手</p>
+                <p><strong>Romaji Name:</strong> Tsunade Senju</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 51</p>
+                <p><strong>Date of Birth:</strong> August 2</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Naruto: Manga/Anime</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Tsunade Senju is the Fifth Hokage of Konohagakure and one of the legendary Sannin. Renowned for her medical ninjutsu and superhuman strength, she plays a vital role in the series as a mentor and leader. Tsunade's character embodies resilience and determination, often navigating the challenges of leadership and loss.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="hinatacard.jpg" alt="Hinata Hyuga">
+        <a href="https://character.ai/chat/BrN8xuZUJkRCXC5v5_VnL-BVrzMoSeqKVmt0Mybos0k" class="button">Click to chat with Hinata!</a>
+    </div>
+    <div class="right">
+        <h2>Hinata Hyuga</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong> 日向ヒナタ</p>
+                <p><strong>Romaji Name:</strong> Hinata Hyuga</p>
+            </div>
+            <div>
+                <p><strong>Age:</strong> 16</p>
+                <p><strong>Date of Birth:</strong> December 27</p>
+            </div>
+        </div>
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Naruto: Manga/Anime</p>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Hinata Hyuga is a kunoichi from the Hyuga clan, known for her gentle nature and unwavering determination. Throughout the series, she grows from a shy and timid girl into a confident warrior, showcasing her strength and loyalty to her friends, especially Naruto Uzumaki.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="maicard.png" alt="Megumin">
+    </div>
+    <div class="right">
+        <h2>Mai Sakurajima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  麻衣</p>
+                <p><strong>Romaji Name:</strong> Mai</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong>  December 2</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bunny Girl Senpai </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Mai Sakurajima is a character from the light novel series Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
+      (commonly known as Rascal Does Not Dream of Bunny Girl Senpai), written by Hajime Kamoshida and illustrated by
+      Keeji Mizoguchi. <br>
+      Mai is portrayed as a beautiful and popular actress who, despite her success, struggles with feelings of
+      invisibility and alienation. She is known for her calm, mature demeanor, but she also has a more vulnerable side
+      that is explored throughout the series.<br>
+      Mai plays a central role in the series as she becomes involved with the protagonist, Sakuta Azusagawa. The series
+      starts with Mai wearing a bunny girl costume in public, which no one seems to notice, and this unusual phenomenon
+      sets off a series of supernatural events linked to her emotional state. Her character's journey is deeply
+      intertwined with the themes of personal struggles, relationships, and the search for identity.<br>
+      Mai's story arc involves her dealing with the complexities of fame, her personal insecurities, and her evolving
+      relationship with Sakuta. Her character undergoes significant development as she confronts and addresses the
+      supernatural challenges affecting her life.<br></p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="maicard.png" alt="Megumin">
+    </div>
+    <div class="right">
+        <h2>Mai Sakurajima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  麻衣</p>
+                <p><strong>Romaji Name:</strong> Mai</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong>  December 2</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bunny Girl Senpai </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Mai Sakurajima is a character from the light novel series Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
+      (commonly known as Rascal Does Not Dream of Bunny Girl Senpai), written by Hajime Kamoshida and illustrated by
+      Keeji Mizoguchi. <br>
+      Mai is portrayed as a beautiful and popular actress who, despite her success, struggles with feelings of
+      invisibility and alienation. She is known for her calm, mature demeanor, but she also has a more vulnerable side
+      that is explored throughout the series.<br>
+      Mai plays a central role in the series as she becomes involved with the protagonist, Sakuta Azusagawa. The series
+      starts with Mai wearing a bunny girl costume in public, which no one seems to notice, and this unusual phenomenon
+      sets off a series of supernatural events linked to her emotional state. Her character's journey is deeply
+      intertwined with the themes of personal struggles, relationships, and the search for identity.<br>
+      Mai's story arc involves her dealing with the complexities of fame, her personal insecurities, and her evolving
+      relationship with Sakuta. Her character undergoes significant development as she confronts and addresses the
+      supernatural challenges affecting her life.<br></p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="left">
+        <img src="maicard.png" alt="Megumin">
+    </div>
+    <div class="right">
+        <h2>Mai Sakurajima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  麻衣</p>
+                <p><strong>Romaji Name:</strong> Mai</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong>  December 2</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bunny Girl Senpai </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Mai Sakurajima is a character from the light novel series Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
+      (commonly known as Rascal Does Not Dream of Bunny Girl Senpai), written by Hajime Kamoshida and illustrated by
+      Keeji Mizoguchi. <br>
+      Mai is portrayed as a beautiful and popular actress who, despite her success, struggles with feelings of
+      invisibility and alienation. She is known for her calm, mature demeanor, but she also has a more vulnerable side
+      that is explored throughout the series.<br>
+      Mai plays a central role in the series as she becomes involved with the protagonist, Sakuta Azusagawa. The series
+      starts with Mai wearing a bunny girl costume in public, which no one seems to notice, and this unusual phenomenon
+      sets off a series of supernatural events linked to her emotional state. Her character's journey is deeply
+      intertwined with the themes of personal struggles, relationships, and the search for identity.<br>
+      Mai's story arc involves her dealing with the complexities of fame, her personal insecurities, and her evolving
+      relationship with Sakuta. Her character undergoes significant development as she confronts and addresses the
+      supernatural challenges affecting her life.<br></p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left">
+        <img src="maicard.png" alt="Megumin">
+    </div>
+    <div class="right">
+        <h2>Mai Sakurajima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  麻衣</p>
+                <p><strong>Romaji Name:</strong> Mai</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong>  December 2</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bunny Girl Senpai </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Mai Sakurajima is a character from the light novel series Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
+      (commonly known as Rascal Does Not Dream of Bunny Girl Senpai), written by Hajime Kamoshida and illustrated by
+      Keeji Mizoguchi. <br>
+      Mai is portrayed as a beautiful and popular actress who, despite her success, struggles with feelings of
+      invisibility and alienation. She is known for her calm, mature demeanor, but she also has a more vulnerable side
+      that is explored throughout the series.<br>
+      Mai plays a central role in the series as she becomes involved with the protagonist, Sakuta Azusagawa. The series
+      starts with Mai wearing a bunny girl costume in public, which no one seems to notice, and this unusual phenomenon
+      sets off a series of supernatural events linked to her emotional state. Her character's journey is deeply
+      intertwined with the themes of personal struggles, relationships, and the search for identity.<br>
+      Mai's story arc involves her dealing with the complexities of fame, her personal insecurities, and her evolving
+      relationship with Sakuta. Her character undergoes significant development as she confronts and addresses the
+      supernatural challenges affecting her life.<br></p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="left">
+        <img src="maicard.png" alt="Megumin">
+    </div>
+    <div class="right">
+        <h2>Mai Sakurajima</h2>
+        <div class="details">
+            <div>
+                <p><strong>Original Name:</strong>  麻衣</p>
+                <p><strong>Romaji Name:</strong> Mai</p>
+               
+            </div>
+            <div>
+                <p><strong>Age:</strong> 17</p>
+                <p><strong>Date of Birth:</strong>  December 2</p>
+              
+            </div>
+        </div>
+        
+        <div class="appears-in">
+            <h3>Appears In</h3>
+            <p> Bunny Girl Senpai </p>
+           
+        </div>
+        
+        
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>  Mai Sakurajima is a character from the light novel series Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
+      (commonly known as Rascal Does Not Dream of Bunny Girl Senpai), written by Hajime Kamoshida and illustrated by
+      Keeji Mizoguchi. <br>
+      Mai is portrayed as a beautiful and popular actress who, despite her success, struggles with feelings of
+      invisibility and alienation. She is known for her calm, mature demeanor, but she also has a more vulnerable side
+      that is explored throughout the series.<br>
+      Mai plays a central role in the series as she becomes involved with the protagonist, Sakuta Azusagawa. The series
+      starts with Mai wearing a bunny girl costume in public, which no one seems to notice, and this unusual phenomenon
+      sets off a series of supernatural events linked to her emotional state. Her character's journey is deeply
+      intertwined with the themes of personal struggles, relationships, and the search for identity.<br>
+      Mai's story arc involves her dealing with the complexities of fame, her personal insecurities, and her evolving
+      relationship with Sakuta. Her character undergoes significant development as she confronts and addresses the
+      supernatural challenges affecting her life.<br></p>
+        </div>
+    </div>
+</div>
+
+
+  <div class="sidebar" id="sidebar">
+            <h2>Sidebar</h2>
+            <a href="homepage.html">Homepage</a>
+            <a href="husbandos.html">The husbando List</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="minigamehome.html">simp clicker</a>
+        </div>
+
+
+        <script>
+            function toggleSidebar() {
+                var sidebar = document.getElementById('sidebar');
+                var content = document.getElementById('content');
+
+                if (sidebar.style.left === '0px') {
+                    sidebar.style.left = '-250px'; /* Hide sidebar */
+                    content.classList.remove('expanded');
+                } else {
+                    sidebar.style.left = '0px'; /* Show sidebar */
+                    content.classList.add('expanded');
+                }
+            }
+        </script>
+ <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+</body>
+</html>

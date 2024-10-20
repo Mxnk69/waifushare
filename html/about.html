@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="font.css">
+    <title>About us and the website</title>
+    <style>
+         .sidebar {
+            height: 100%; /* Full-height */
+            width: 250px; /* Sidebar width */
+            position: fixed; /* Fixed sidebar */
+            top: 0;
+            left: 0;
+            background-color: #111; /* Background color */
+            padding-top: 20px;
+            color: white;
+        }
+        
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        
+        .sidebar a:hover {
+            background-color: #575757; /* Darker background on hover */
+        }
+        
+        .content {
+            margin-left: 260px; /* Same width as the sidebar */
+            padding: 20px;
+        }
+        .sidebar {
+            height: 100%; /* Full-height */
+            width: 250px; /* Sidebar width */
+            position: fixed; /* Fixed sidebar */
+            top: 0;
+            left: -250px; /* Hide sidebar initially */
+            background-color: #111; /* Background color */
+            padding-top: 20px;
+            color: white;
+            transition: left 0.3s; /* Smooth slide-in effect */
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757; /* Darker background on hover */
+        }
+
+        .menu-btn {
+            font-size: 30px;
+            background-color: rgba(20, 20, 20, 0);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .content {
+            margin-left: 20px; /* Space for the menu button */
+            padding: 20px;
+            transition: margin-left 0.3s; /* Smooth content shift */
+        }
+
+        .content.expanded {
+            margin-left: 260px; /* Same width as the sidebar */
+        }
+        .menu-btn.hidden {
+            display: none; /* Hide the button */
+        }
+         .content.expanded {
+            margin-left: 250px; /* Same width as the sidebar */
+        }
+      
+        body {
+       font-family: "SUSE", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        header {
+            background-color: transparent;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+         font-family: "SUSE", sans-serif;
+        }
+        p, h2 {
+            color: white;
+            background-color: transparent;
+       font-family: "SUSE", sans-serif;
+        }
+               footer {
+          background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+
+               
+             bottom: 0;
+        }
+    </style>
+     <header>
+        <h1>So what is the website about?</h1>
+        <div class="gojos"> <img style="width: 360px"; src="gojosss.png" alt="sideGojo"></div>
+    </header>
+
+</head>
+<body>
+<p><h2>
+    This website is all about learning about anime characters in a fun and interactive way.<br><br>
+    First of all, What is waifu and husbando? <br><br>
+    If you are confused about that then dont worry, im going to explain about it! So a waifu is what we call a girl in an anime series and a husbando is what we call a boy in an anime series.<br><br>
+    Now that you know the meaning of those words. You can learn about them, their looks and their personality and where they are from and more!
+</h2></p>
+<p> sources: character.ai, wikipedia, hero.fandom.com and myself ofc
+
+
+
+
+
+    <div class="sidebar" id="sidebar">
+    <h2>Sidebar</h2>
+    <a href="waifu.html">The Waifu List</a>
+    <a href="husbandos.html">The husbando List</a>
+    <a href="homepage.html">Homepage</a>
+    
+    <a href="contact.html">Contact</a>
+    <a href="minigamehome.html">simp clicker</a>
+</div>
+
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar');
+        var content = document.getElementById('content');
+
+        if (sidebar.style.left === '0px') {
+            sidebar.style.left = '-250px'; /* Hide sidebar */
+            content.classList.remove('expanded');
+        } else {
+            sidebar.style.left = '0px'; /* Show sidebar */
+            content.classList.add('expanded');
+        }
+    }
+</script>
+<button class="menu-btn" onclick="toggleSidebar()">☰</button>
+</div>
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
